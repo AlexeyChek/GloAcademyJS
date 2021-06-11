@@ -1,3 +1,5 @@
+'use strict';
+/*
 let num = 266219;
 num += '';
 
@@ -11,9 +13,10 @@ console.log(prod);
 prod **= 3;
 
 console.log(('' + prod).substr(0, 2));
+*/
 
 // lesson03-hard
-
+/*
 let lang = document.documentElement.lang;
 
 let now = (new Date()).getDay();
@@ -108,9 +111,26 @@ const days = {'ru' : ['Воскресенье', 'Понедельник', 'Вт�
               'en' : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']};
 
 console.log(days[lang][now]);
+*/
 
 // lesson03-hard 2.
-
+/*
 let namePerson = prompt('Введите имя.');
 
 console.log(namePerson === 'Артем' ? 'директор' : namePerson === 'Максим' ? 'преподаватель' : 'студент');
+*/
+
+// lesson04-hard
+
+const returnInfo = (data)=> {
+  if (typeof data === 'string') {
+    data = data.trim();
+    return data.length <= 30 ? data : data.substring(0, 30) + '...';
+  } else {
+    return 'Это не строка';
+  }
+};
+
+console.log(returnInfo(5));
+console.log(returnInfo('   это короткая строка      '));
+console.log(returnInfo('      Это строка длинная оооооооооооочень        '));
