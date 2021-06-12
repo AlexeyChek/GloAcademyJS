@@ -43,10 +43,8 @@ let getExpensesMonth = function() {
   let sum = 0;
   let answer;
 
-  for (let i = 0;; i++) {
-    answer = prompt('Введите обязательную статью расходов?', 'машина');
-    if (!answer) break;
-    expenses[i] = answer;
+  for (let i = 0; i < 2; i++) {
+    expenses[i]  = prompt('Введите обязательную статью расходов?', 'машина');
     answer = prompt('Во сколько это обойдется?', 25000)
     amount[i] = isNumber(answer) ? +answer : 0;
     sum += amount[i];
