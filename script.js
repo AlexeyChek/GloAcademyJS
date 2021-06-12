@@ -34,7 +34,7 @@ let appData = {
   },  
   getBudget : ()=> {
     appData.budgetMonth = appData.budget - appData.expensesMonth;
-    appData.budgetDay = appData.budgetMonth / 30;
+    appData.budgetDay = Math.floor(appData.budgetMonth / 30);
   },  
   getTargetMonth : ()=> {
     appData.getBudget();
@@ -50,8 +50,11 @@ let appData = {
   },
   asking: function() {
     appData.budget = money;
-    let addExpenses = prompt('Перечислите возможные расходы через запятую');
-    appData.addExpenses = addExpenses.toLowerCase().split(', ');
+    let addExpenses = prompt('Перечислите возможные расходы через запятую', 'кино, вино,домино,    падшие женщины    ');
+    appData.addExpenses = addExpenses.toLowerCase().split(',');
+    for(let expense in appData.addExpenses) {
+      appData.addExpenses[expense] = appData.addExpenses[expense].trim();
+    }
     appData.deposit = confirm('Есть ли у вас депозит в банке?');
     for (let i = 0; i < 2; i++) {
       let answer1  = prompt('Введите обязательную статью расходов?', 'машина');
@@ -73,5 +76,5 @@ console.log(appData.getStatusIncome());
 console.log('Наша программа включает в себя данные:');
 for(let value in appData) {
   if (typeof appData[value] === 'function') continue;
-  console.log(value, '\t-\t', appData[value]);
+  console.log(value, ": ", appData[value]);
 }
