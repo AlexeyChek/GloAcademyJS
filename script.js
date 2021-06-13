@@ -57,11 +57,16 @@ let appData = {
     }
     appData.deposit = confirm('Есть ли у вас депозит в банке?');
     for (let i = 0; i < 2; i++) {
-      let answer1  = prompt('Введите обязательную статью расходов?', 'машина');
-      let answer2 = prompt('Во сколько это обойдется?', 25000);
-      answer2 = isNumber(answer2) ? +answer2 : 0;
-      appData.expenses[answer1] = answer2;
-    };
+      let answer1;
+      do {
+        answer1 = prompt('Введите обязательную статью расходов?', 'машина');
+      } while(isNumber(answer1));
+      let answer2;
+      do {
+        answer2 = prompt('Во сколько это обойдется?', 25000);
+      } while(!isNumber(answer2));
+      appData.expenses[answer1] = +answer2;
+    }
     appData.getExpensesMonth();
     appData.getTargetMonth();
     appData.getBudget();
