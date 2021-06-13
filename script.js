@@ -18,6 +18,8 @@ let appData = {
   income : {}, // дополнительный доход
   addExpenses : ['интернет', 'такси', 'коммуналка'], // дополнительные расходы
   deposit : false,
+  depositPercent: 0,
+  depositSum: 0,
   mission : 150000, // нужно накопить
   period : 2, // количество месяцев
   expenses : {},
@@ -56,6 +58,18 @@ let appData = {
       appData.addExpenses[expense] = appData.addExpenses[expense].trim();
     }
     appData.deposit = confirm('Есть ли у вас депозит в банке?');
+    if (appData.deposit) {
+      let answer;
+      do {
+        answer = prompt('Какой процент по депозиту?', 4);
+      } while(isNumber(answer));
+      appData.depositPercent = +answer;
+      do {
+        answer = prompt('Сумма депозита?', 5000);
+      } while(isNumber(answer));
+      appData.depositSum = +answer;
+    }
+
     for (let i = 0; i < 2; i++) {
       let answer1;
       do {
