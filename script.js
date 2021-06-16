@@ -67,14 +67,14 @@ let appData = {
     this.getExpenses();
     this.budget = +salaryAmount.value;
     this.getExpenses();
-    appData.getIncome();
-    appData.getExpensesMonth();
-    appData.getAddExpenses();
+    this.getIncome();
+    this.getExpensesMonth();
+    this.getAddExpenses();
     this.getAddIncome();
     this.getBudget();
-
+    
     this.showResult();
-
+    
     blockForm();
   },
   getAddExpenses: function(){
