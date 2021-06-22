@@ -100,6 +100,10 @@ class AppData {
 
   addExpensesBlock(){
     const cloneExpensesItem = expensesItems[0].cloneNode(true);
+    const input = cloneExpensesItem.querySelectorAll('input');
+    input.forEach((item) => {
+      item.value = '';
+    });
     expensesItems[0].parentNode.insertBefore(cloneExpensesItem, expensesAdd);
     expensesItems = document.querySelectorAll('.expenses-items');
     if(expensesItems.length === 3) {
@@ -109,6 +113,10 @@ class AppData {
 
   addIncomeBlock(){
     const cloneIncomeItem = incomeItems[0].cloneNode(true);
+    const input = cloneIncomeItem.querySelectorAll('input');
+    input.forEach((item) => {
+      item.value = '';
+    });
     incomeItems[0].parentNode.insertBefore(cloneIncomeItem, incomeAdd);
     incomeItems = document.querySelectorAll('.income-items');
     if(incomeItems.length === 3) {
@@ -327,7 +335,19 @@ class AppData {
 
     depositCheck.addEventListener('change', this.depositHandler.bind(this));
   }
-}  
+}
+
+dataSection.addEventListener('keyup', (event) => {
+  let target = event.target;
+  if (target.matches('input[type="text"]')){
+    let placeholder = target.getAttribute('placeholder').toLowerCase();
+    if (placeholder === 'сумма' || placeholder === 'процент') {
+      target.value = target.value.replace(/[^0-9]/g,'');
+    } else {
+      target.value = target.value.replace(/[^А-я\s?!,.]/g,'');
+    }
+  }
+});
 
 const appData = new AppData();
 appData.addListeners();
