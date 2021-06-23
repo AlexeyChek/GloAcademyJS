@@ -248,6 +248,12 @@ class AppData {
     
     periodSelect.value = 1;
     periodAmount.textContent = '1';
+
+    depositBank.removeAttribute('disabled');
+
+    depositCheck.checked = false;
+    this.depositHandler();
+
   
     startButton.style.display = 'block';
     cancelButton.style.display = 'none';
