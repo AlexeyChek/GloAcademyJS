@@ -76,26 +76,21 @@ class AppData {
     this.blockForm();
   }
 
-  getAddIncExp(){
-    
+  getAddIncExp(){    
     const addExpenses = additionalExpensesItem.value.split(',');
 
-    const count = (item) => {
-      console.log('this: ', this);
-      console.log('item: ', item);
+    const count = (item, elem) => {
       item = item.trim();
       if (item !== ''){
-        this.addExpenses.push(item);
+        elem.push(item);
       }
     };
 
-    addExpenses.forEach(count);
-
-    additionalIncome.forEach((item)=>{
-      item = item.value.trim();
-      if (item !== '') {
-        this.addIncome.push(item);
-      }
+    addExpenses.forEach(item => {
+      count(item, this.addExpenses)
+    });
+    additionalIncome.forEach(item => {
+      count(item.value, this.addIncome)
     });
   }
 
