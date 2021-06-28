@@ -358,7 +358,7 @@ class AppData {
   }
 
   reloadCalc(){
-    if (this.checkReload()) {
+    if (this.checkReload() && document.cookie && localStorage.length > 0) {
       budgetMonthValue.value = localStorage.budgetMonthValue;
       budgetDayValue.value = localStorage.budgetDayValue;
       expensesMonthValue.value = localStorage.expensesMonthValue;
@@ -388,13 +388,13 @@ class AppData {
   }
 
   setCookies(age){
-    document.cookie = encodeURIComponent('budgetMonthValue') + '=' + encodeURIComponent(`${budgetMonthValue.value};max-age=${age}`);
-    document.cookie = encodeURIComponent('budgetDayValue') + '=' + encodeURIComponent(`${budgetDayValue.value};max-age=${age}`);
-    document.cookie = encodeURIComponent('expensesMonthValue') + '=' + encodeURIComponent(`${expensesMonthValue.value};max-age=${age}`);
-    document.cookie = encodeURIComponent('additionalIncomeValue') + '=' + encodeURIComponent(`${additionalIncomeValue.value};max-age=${age}`);
-    document.cookie = encodeURIComponent('additionalExpensesValue') + '=' + encodeURIComponent(`${additionalExpensesValue.value};max-age=${age}`);
-    document.cookie = encodeURIComponent('budgetMonth') + '=' + encodeURIComponent(`${this.budgetMonth};max-age=${age}`);
-    document.cookie = encodeURIComponent('targetMonthValue') + '=' + encodeURIComponent(`${targetMonthValue.value};max-age=${age}`);
+    document.cookie = encodeURIComponent('budgetMonthValue') + '=' + encodeURIComponent(`${budgetMonthValue.value}`) + `;max-age=${age}`;
+    document.cookie = encodeURIComponent('budgetDayValue') + '=' + encodeURIComponent(`${budgetDayValue.value}`) + `;max-age=${age}`;
+    document.cookie = encodeURIComponent('expensesMonthValue') + '=' + encodeURIComponent(`${expensesMonthValue.value}`) + `;max-age=${age}`;
+    document.cookie = encodeURIComponent('additionalIncomeValue') + '=' + encodeURIComponent(`${additionalIncomeValue.value}`) + `;max-age=${age}`;
+    document.cookie = encodeURIComponent('additionalExpensesValue') + '=' + encodeURIComponent(`${additionalExpensesValue.value}`) + `;max-age=${age}`;
+    document.cookie = encodeURIComponent('budgetMonth') + '=' + encodeURIComponent(`${this.budgetMonth}`) + `;max-age=${age}`;
+    document.cookie = encodeURIComponent('targetMonthValue') + '=' + encodeURIComponent(`${targetMonthValue.value}`) + `;max-age=${age}`;
     document.cookie = `isLoad=true;max-age=${age}`;
   }
 
@@ -406,6 +406,7 @@ class AppData {
     keys.forEach(item => {
       if (cook[item] !== localStr[item]) result = false;
     });
+
     return result;
   }
 
@@ -435,3 +436,5 @@ dataSection.addEventListener('keyup', (event) => {
 const appData = new AppData();
 appData.addListeners();
 appData.reloadCalc();
+console.log(localStorage);
+console.log(document.cookie);
